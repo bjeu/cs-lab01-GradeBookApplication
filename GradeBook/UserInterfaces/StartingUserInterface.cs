@@ -40,11 +40,10 @@ namespace GradeBook.UserInterfaces
                 return;
             }
             var name = parts[1];
-            bool isWeighted = bool.Parse(parts[3]);
             BaseGradeBook gradeBook;
 
-            if (parts[2] == "standard") gradeBook = new StandardGradeBook(name, isWeighted);
-            else if (parts[2] == "ranked") gradeBook = new RankedGradeBook(name, isWeighted);
+            if (parts[2] == "standard") gradeBook = new StandardGradeBook(name, bool.Parse(parts[3]));
+            else if (parts[2] == "ranked") gradeBook = new RankedGradeBook(name, bool.Parse(parts[3]));
             else
             {
                 Console.Write(parts[2] + " is not a supported type of gradebook, please try again");
