@@ -18,9 +18,10 @@ namespace GradeBook.GradeBooks
             int top20 = (int)Math.Ceiling(0.2 * Students.Count);
             List<double> oceny = new List<double>();
 
-            Students.Sort((y, x) => x.AverageGrade.CompareTo(y.AverageGrade));
+            List<Student> _Students = new List<Student>(Students);
+            _Students.Sort((y, x) => x.AverageGrade.CompareTo(y.AverageGrade));
 
-            foreach (Student ocena in Students)
+            foreach (Student ocena in _Students)
             {
                 oceny.Add(ocena.AverageGrade);
             }
@@ -30,6 +31,11 @@ namespace GradeBook.GradeBooks
             else if(oceny[(3 * top20)] < averageGrade) return 'C';
             else if(oceny[(4 * top20)] < averageGrade) return 'D';
             else return 'F';
+        }
+        public override void CalculateStatistics()
+        {
+            if(Students.Count < 5) Console.WriteLine("Ranked grading requires at least 5 students.");
+            else base.CalculateStatistics();
         }
     }
 }
